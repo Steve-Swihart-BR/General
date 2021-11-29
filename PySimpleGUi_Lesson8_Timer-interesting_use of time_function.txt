@@ -1,0 +1,23 @@
+import PySimpleGUI as sg
+import time
+
+layout = [  [sg.Text('My Timer')],
+            [sg.Text(size=(20,1), key='-OUT-')],
+            [sg.B('Go'),sg.Button('Exit')]  ]
+
+window = sg.Window('Timer', layout, keep__on_top=True)
+
+start=time.time()
+
+while True:             # Event Loop
+    delta=round((time.time()-start)*1000)
+	event, values = window.read(timeout=50)
+    # print(event, values)
+    if event in (None, 'Exit'):
+        break
+    window['-OUT-'].update(f'{delta//1000//60:02d}:{delta//1000%60:02d}.{delta%1000:03d}')
+
+    counter += 1
+window.close()
+
+exit()
