@@ -2,7 +2,8 @@
 """
 Created on Mon Nov 29 12:48:17 2021
 
-@author: Steve (orig from Jason Yang of PSG)
+@author: Steve (orig from Jason Yang of PSG, see "PSG_WindowScaling.py" for original)
+  ... this version allows repeated down or up rather than just one down and one up.
 """
 
 import PySimpleGUI as sg
@@ -23,7 +24,7 @@ def new_window(win, scale=None):
     return window
 
 sg.theme("DarkBlue3")
-sg.set_options(font=("Courier New", 16))
+sg.set_options(font=("Courier New", 14))
 
 window = new_window(None, None)
 dpi = window.TKroot.winfo_fpixels('1i')
@@ -38,7 +39,7 @@ while True:
     event, values = window.read()
     if event == sg.WINDOW_CLOSED:
         break
-    elif event in scales:
+    elif event in scales: # user is trying to change scale - any of the 3 buttons described by the scales dict.
         if event == "DOWN":
             inUse=inUse/factor
             print('Down, inUse =',inUse)
